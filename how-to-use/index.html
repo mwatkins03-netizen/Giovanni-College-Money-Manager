@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Use College Money Manager</title>
+<meta name="description" content="A step-by-step guide to College Money Manager: entering your money, reading your weekly number and runway, how Jev sorts spending, and the Learn lessons.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/app.css">
+<style>
+.page { max-width: 860px; margin: 24px auto 60px; padding: 44px 56px 56px; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); }
+.page h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; letter-spacing: -.025em; line-height: 1.08; margin: 6px 0 12px; }
+.page .lede { font-size: 18.5px; color: var(--ink-2); margin: 0 0 18px; }
+.page h2 { font-size: 25px; font-weight: 800; letter-spacing: -.015em; margin: 48px 0 10px; padding-top: 16px; border-top: 2px solid var(--rule-strong); display: block; }
+.page h2 .k { display: block; font: 600 12px var(--mono); letter-spacing: .1em; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; }
+.page h3 { font-size: 17px; font-weight: 800; margin: 26px 0 6px; }
+.page p, .page li { font-size: 16px; }
+.page ol.steps, .page ul.plain { padding-left: 22px; }
+.page li { margin-bottom: 6px; }
+.toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 22px 0 6px; }
+.toc a { display: block; background: var(--surface); padding: 12px 14px; text-decoration: none; color: var(--ink); }
+.toc a:hover { background: var(--surface-2); }
+.toc .k { font: 600 11px var(--mono); color: var(--muted); letter-spacing: .06em; }
+.toc b { display: block; font-size: 15.5px; }
+.toc span { font-size: 13px; color: var(--ink-2); }
+.answer { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 16px 0; }
+.answer div { background: var(--surface-2); padding: 14px 16px; }
+.answer b { display: block; font-size: 17px; }
+.note { background: var(--surface-2); border-left: 3px solid var(--brand); padding: 10px 16px; margin: 16px 0; font-size: 15px; }
+.note.warn { border-left-color: var(--warn); } .note.jev { border-left-color: var(--c1); }
+.ex { border: 1px solid var(--rule); border-radius: var(--radius); background: var(--bg); padding: 14px; margin: 14px 0; }
+.ex .cap { font: 12px var(--mono); color: var(--muted); margin-top: 8px; }
+.ex .fake-in { display: flex; gap: 8px; }
+.ex .fake-in span { flex: 1; background: var(--surface-2); border: 1px solid var(--rule); border-radius: var(--radius); padding: 8px 10px; font-weight: 500; }
+.ex .fake-in span.btn { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); font-weight: 700; }
+.ex .entry { background: var(--surface); padding: 8px 10px; border: 1px solid var(--rule); }
+.ex .entry .cat span.sel { border: 1px solid var(--rule); border-radius: var(--radius); padding: 2px 8px; font-size: 13px; }
+.page table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 12px 0; }
+.page th, .page td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+.page th { font: 600 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 1.5px solid var(--ink); }
+.page td.r { text-align: right; font-family: var(--mono); }
+.page tr.total td { font-weight: 800; border-bottom: 2px solid var(--ink); }
+.stat-ex { margin: 14px 0; }
+.lines { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14.5px; margin: 8px 0; }
+.lines span { display: inline-flex; align-items: center; gap: 8px; }
+.lines i { width: 26px; border-top: 2px solid var(--line-pace); }
+.lines i.plan { border-top: 2px dashed var(--line-plan); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+details.faq { border-bottom: 1px solid var(--rule); padding: 10px 0; }
+details.faq summary { cursor: pointer; font-weight: 700; }
+details.faq p { margin: 8px 0 4px; color: var(--ink-2); }
+.session { counter-reset: s; list-style: none; padding: 0; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.session li { background: var(--surface); padding: 12px 14px 12px 56px; position: relative; margin: 0; }
+.session li::before { counter-increment: s; content: counter(s); position: absolute; left: 14px; top: 12px; width: 26px; height: 26px; display: grid; place-items: center; background: var(--ink); color: var(--surface); font: 700 13px var(--mono); border-radius: var(--radius); }
+.session .t { font: 12px var(--mono); color: var(--muted); }
+.cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+@media (max-width: 700px) {
+  .page { margin: 0; padding: 22px 16px 40px; border: 0; }
+  .toc, .answer { grid-template-columns: 1fr; }
+}
+@media print { .top, .cta { display: none !important; } .page { border: 0; margin: 0; padding: 0; } body { background: #fff; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true">$</span><div><b>College Money Manager</b><small>How to use</small></div></div>
+  <div class="row" style="margin-left:auto"><button class="btn ghost small" onclick="print()">Print this guide</button><a class="btn small" href="../#budget">Open the app</a></div>
+</header>
+
+<article class="page">
+  <p class="eyebrow">Student guide</p>
+  <h1>How to use College Money Manager</h1>
+  <p class="lede">You type in what you have, what's coming in, and what's going out. The app tells you whether your money lasts until the end of the semester, and how much you can spend each week so it does.</p>
+
+  <div class="answer">
+    <div><b>Will my money last?</b>The top box gives you a yes, or the date you'd run out.</div>
+    <div><b>How much can I spend a week?</b>Your <i>weekly number</i>: what's safe to spend on food, fun, and everything else.</div>
+  </div>
+
+  <p>It takes about 10 minutes the first time. You'll want your bank app open (for your balance and recent spending) and a rough idea of your rent and bills. Exact numbers help, but good guesses work fine to start.</p>
+
+  <nav class="toc" aria-label="In this guide">
+    <a href="#start"><span class="k">00</span><b>Start here</b><span>Try the sample first</span></a>
+    <a href="#enter"><span class="k">01–04</span><b>Fill in four boxes</b><span>Have, in, out, goals</span></a>
+    <a href="#read"><span class="k">05</span><b>Read your results</b><span>Weekly number, pie, runway</span></a>
+    <a href="#jev"><span class="k">06</span><b>How Jev sorts</b><span>The AI part, and its limits</span></a>
+    <a href="#learn"><span class="k">07</span><b>The Learn tab</b><span>Six lessons with checks</span></a>
+    <a href="#habit"><span class="k">08</span><b>Make it a habit</b><span>5 minutes a week</span></a>
+  </nav>
+
+  <!-- ============ START ============ -->
+  <h2 id="start"><span class="k">00 · Start here</span>See it work before you type anything</h2>
+  <p>The first time you open the app, there's a <b>Try a sample student</b> button at the top. It loads a made-up student with a job, rent, a car, two weeks of spending, and a spring-break goal. Look around: change their rent, delete a dinner, and watch the numbers move. When you're ready, press <b>Clear everything</b> at the bottom of the page and put in your own.</p>
+  <p>The app has two tabs. <b>My budget</b> is your plan. <b>Learn</b> is six short lessons on budgeting, each with a question to check yourself.</p>
+  <div class="note">Everything you type is saved in this browser on this device, and nowhere else. No account, no sign-in. If you switch phones or clear your browser data, it starts empty.</div>
+
+  <!-- ============ ENTER ============ -->
+  <h2 id="enter"><span class="k">01–04 · Fill in four boxes</span>Tell it where you stand</h2>
+  <p>On a laptop the boxes are on the left and your results are on the right. On a phone your results come first; scroll down to the boxes.</p>
+
+  <h3>1 · Where you are now</h3>
+  <ul class="plain">
+    <li><b>Money you have today.</b> What's in checking plus any cash you plan to live on. Leave out savings you don't want to touch.</li>
+    <li><b>Semester ends.</b> Your last day on campus. It's set to Dec 11 for fall; change it if yours is different. Everything is figured from today to this date.</li>
+  </ul>
+
+  <h3>2 · Money coming in</h3>
+  <p>Press <b>+ Add money coming in</b> for each source: a paycheck, money from family, a refund that hasn't landed yet. Give each one an amount and how often it comes.</p>
+  <table>
+    <thead><tr><th>How often</th><th>When the app counts it</th></tr></thead>
+    <tbody>
+      <tr><td>every week</td><td>One week from today, then every 7 days</td></tr>
+      <tr><td>every 2 weeks</td><td>Two weeks from today, then every 14 days</td></tr>
+      <tr><td>every month</td><td>The 1st of each month</td></tr>
+      <tr><td>one time</td><td>Today (use it for money you're sure is coming, like a refund)</td></tr>
+    </tbody>
+  </table>
+  <p>Paychecks: use what lands in your account after taxes, not your hourly rate times hours.</p>
+
+  <h3>3 · Money going out</h3>
+  <p>This box has two parts, because there are two kinds of spending.</p>
+  <p><b>Bills that repeat</b> are the same every time: rent, phone, car insurance, subscriptions. Press <b>+ Add a bill</b>, type the name, the amount, and how often. Monthly bills are counted on the 1st. When you finish typing a bill's name, Jev picks a category for it (see <a href="#jev">How Jev sorts</a>). You can change it from the menu under the bill.</p>
+  <p><b>What you spent</b> is everyday spending: food, gas, going out. Type the amount and what it was for in one line, then press <b>Add</b> (or Enter).</p>
+  <div class="ex" aria-label="Example of adding spending">
+    <div class="fake-in"><span>12.50 chipotle with roommates</span><span style="flex:0 0 120px">10/27/2026</span><span class="btn" style="flex:none">Add</span></div>
+    <div style="margin-top:10px" class="entry"><span class="d">Oct 27</span><span class="w">chipotle with roommates <span class="why">want</span></span><span class="amt">$12.50</span><span class="x" aria-hidden="true">×</span>
+      <span class="cat"><span class="dot" style="background:var(--c3)"></span><span class="sel">Eating out ▾</span><span class="why">Jev 100%</span></span></div>
+    <p class="cap">What you type (top) and what shows up in your list (bottom). The amount can go first or last; "$40 gas" and "gas 40" both work.</p>
+  </div>
+  <ul class="plain">
+    <li>The date defaults to today. Change it to log something from earlier in the week.</li>
+    <li>Log at least a few days of spending. The app needs it to work out <b>your pace</b>, which is what the pie chart and the red runway line come from.</li>
+    <li>Wrong category? Pick the right one from the menu. Your choice always wins, and the chip changes to <span class="why you">you chose</span>.</li>
+    <li>Made a mistake? The × on the right removes the line.</li>
+  </ul>
+  <div class="note warn">Don't log rent or other bills here too. If they're in "Bills that repeat," logging them again counts them twice.</div>
+
+  <h3>4 · Savings goals</h3>
+  <p>A goal is money you want to still have at the end of the semester: spring break, a cushion for a surprise bill, next semester's books. Give it an amount and how much you've already set aside. The app takes what's left to save off the top <i>before</i> it works out your weekly number. That's called paying yourself first (Lesson 4 on the Learn tab).</p>
+
+  <!-- ============ READ ============ -->
+  <h2 id="read"><span class="k">05 · Read your results</span>What the app tells you</h2>
+
+  <h3>The top box: will it last?</h3>
+  <p>The colored bar on top tells you at a glance. <b style="color:var(--good)">Green</b> means you make it to the end of the semester. <b style="color:var(--bad)">Red</b> means you don't at your current pace, and the box names the day you'd run out. Under it are three numbers:</p>
+  <table>
+    <thead><tr><th>Number</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td><b>Weekly number</b></td><td>What you can spend each week on everything that isn't a bill or a goal, and still make it. This is the one to remember.</td></tr>
+      <tr><td><b>Your pace</b></td><td>What you've actually been spending per week, from what you logged. Compare it with the weekly number: if your pace is higher, you'll run short.</td></tr>
+      <tr><td><b>Time left</b></td><td>Days and weeks from today to the end of the semester.</td></tr>
+    </tbody>
+  </table>
+  <p>Press <b>Show the math</b> to see exactly how the weekly number was worked out. Here's the sample student's, on October 27 (the numbers shift as the semester goes on):</p>
+  <table aria-label="Example of the math">
+    <tbody>
+      <tr><td>Money you have today</td><td class="r">$1,850</td></tr>
+      <tr><td>+ Money coming in before Dec 11</td><td class="r">$1,460</td></tr>
+      <tr><td>− Bills due before Dec 11</td><td class="r">−$1,622</td></tr>
+      <tr><td>− Still to save for your goals</td><td class="r">−$340</td></tr>
+      <tr class="total"><td>= Free for everyday spending</td><td class="r">$1,348</td></tr>
+      <tr><td>÷ 6.4 weeks left</td><td class="r">$210 a week</td></tr>
+    </tbody>
+  </table>
+  <p>Your pace is everything you logged divided by the days you've been logging, times 7. If you've logged fewer than 7 days, it divides by 7 days anyway, so one big day doesn't make your pace look huge.</p>
+
+  <h3>Where your money goes: the pie chart</h3>
+  <p>Each slice is a category. Hover over a slice (or look at the list beside it) for the dollar amount and the share. Two views:</p>
+  <ul class="plain">
+    <li><b>What I logged</b>: just your everyday spending, exactly as you entered it.</li>
+    <li><b>A month, bills in</b>: a typical month, with your bills plus a month of everyday spending at your pace. This is usually the eye-opener, because rent tends to be the biggest slice by far.</li>
+  </ul>
+  <p>Under the pie, <b>Needs and wants</b> splits what you logged into the two. <b>Show as a table</b> gives the same numbers as a list, if that's easier to read.</p>
+
+  <h3>Your runway</h3>
+  <p>The runway chart shows your balance on every day from today to the end of the semester. It steps up when money comes in, drops when a bill is due, and slides down a little every day from everyday spending. Hover or drag across it to see the balance on any day.</p>
+  <div class="lines"><span><i></i>At your logged pace</span><span><i class="plan"></i>Spending exactly your weekly number</span></div>
+  <p>If the solid line crosses $0 before the dashed "Semester ends" line, a dot marks the day you'd run out. The dashed green line shows what happens if you spend exactly your weekly number: it ends the semester above zero, with your goals still saved. The gap between the two lines is the change you'd need to make.</p>
+
+  <h3>What stands out</h3>
+  <p>A short list of things the app noticed: you're over your weekly number by a certain amount, eating out is more than groceries, rent is more than half your month, and so on. Each note says <b>Why</b> underneath, so you can see which numbers it came from. These are written by simple rules in the app, not by an AI.</p>
+
+  <h3>Print my plan</h3>
+  <p>At the bottom of the page. It prints your results and the tables (not the input boxes), which is handy to stick on the fridge or bring to a meeting with a financial aid advisor.</p>
+
+  <!-- ============ JEV ============ -->
+  <h2 id="jev"><span class="k">06 · How Jev sorts</span>The AI part, and what it doesn't do</h2>
+  <p>Jev is an AI model from TypeSafe AI. It's different from a chatbot: it never writes sentences. The app gives it a short question and a list of options, and it sends back a percentage for each option. In this app it answers two questions about everything you log:</p>
+  <ol class="steps">
+    <li><b>Which category does this belong in?</b> (rent &amp; housing, groceries, eating out, and so on)</li>
+    <li><b>Is this a need or a want</b> for a college student?</li>
+  </ol>
+  <p>The chip next to each entry shows how sure Jev was:</p>
+  <div class="chips"><span class="why">Jev 100%</span><span class="why unsure">Jev 41%</span><span class="why unsure">guess</span><span class="why you">you chose</span></div>
+  <ul class="plain">
+    <li><b>Jev 100%</b>: Jev was sure. Click it to see the percentage for every category.</li>
+    <li><b>Jev 41%</b> in orange: Jev was split between categories. Worth a look.</li>
+    <li><b>guess</b> in orange: Jev couldn't be reached (no internet, or the service was down), so the app matched words against a list instead.</li>
+    <li><b>you chose</b>: you picked the category yourself. Jev won't change it.</li>
+  </ul>
+  <div class="note jev"><b>What gets sent:</b> only the words you typed for an entry, like "chipotle with roommates." Never the amount, the date, your balance, or anything else. Jev's answer for the same words is remembered, so "starbucks" is only asked once. At the bottom of the spending list, <b>What Jev is asked</b> shows the exact questions.</div>
+  <p>Need or want is a judgment call. Jev's answer is a starting point for you to agree or disagree with, not a grade. A phone plan is a need; the newest phone probably isn't. You decide.</p>
+
+  <!-- ============ LEARN ============ -->
+  <h2 id="learn"><span class="k">07 · The Learn tab</span>Six short lessons</h2>
+  <p>Each lesson takes two or three minutes:</p>
+  <ol class="steps">
+    <li><b>Read</b> the short intro at the top.</li>
+    <li><b>Watch</b> the picture build. Press <b>Play</b> and it moves through the steps on its own, or use the ← → buttons to go at your own speed. The words for each step are always shown underneath, and <b>Transcript</b> shows them all at once.</li>
+    <li><b>Check yourself</b> with one question at the bottom: work out a number, sort some items, or pick an answer. You get feedback right away and can try again as many times as you like.</li>
+  </ol>
+  <table>
+    <thead><tr><th>#</th><th>Lesson</th><th>You'll be able to</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Two numbers: in and out</td><td>Work out a weekly number by hand</td></tr>
+      <tr><td>2</td><td>Fixed and flexible</td><td>Tell which costs you can change this week</td></tr>
+      <tr><td>3</td><td>Needs and wants</td><td>Sort spending, and see the gray areas</td></tr>
+      <tr><td>4</td><td>Pay yourself first</td><td>Turn a goal into a weekly amount</td></tr>
+      <tr><td>5</td><td>Read your runway</td><td>Read a runway chart and find the run-out date</td></tr>
+      <tr><td>6</td><td>50/30/20 as a starting point</td><td>Use a common rule of thumb, and know when it doesn't fit</td></tr>
+    </tbody>
+  </table>
+  <p>A ✓ appears next to each lesson you've checked. Your progress is saved on this device.</p>
+
+  <!-- ============ HABIT ============ -->
+  <h2 id="habit"><span class="k">08 · Make it a habit</span>A first session, then five minutes a week</h2>
+  <h3>First session, about 20 minutes</h3>
+  <ol class="session">
+    <li><span class="t">3 min</span><br>Load the sample student. Change their rent to $500 and watch the top box and the runway change.</li>
+    <li><span class="t">2 min</span><br>Clear everything. Enter your balance and your semester's end date.</li>
+    <li><span class="t">5 min</span><br>Add what's coming in and your bills. Check the categories Jev picked for your bills.</li>
+    <li><span class="t">5 min</span><br>Open your bank app and log the last week of everyday spending.</li>
+    <li><span class="t">3 min</span><br>Add one savings goal, even a small one. Read your weekly number and "What stands out."</li>
+    <li><span class="t">2 min</span><br>Do Lesson 1 on the Learn tab and check that your weekly number makes sense to you.</li>
+  </ol>
+  <h3>Every week after that</h3>
+  <ul class="plain">
+    <li>Update <b>Money you have today</b> from your bank app.</li>
+    <li>Log the week's spending, or at least the bigger things.</li>
+    <li>Look at one number: is <b>your pace</b> under your <b>weekly number</b>? If not, "What stands out" usually points to the easiest place to cut.</li>
+  </ul>
+
+  <!-- ============ FAQ ============ -->
+  <h2 id="faq"><span class="k">Questions</span>Good to know</h2>
+  <details class="faq"><summary>Is this financial advice?</summary><p>No. It's a learning tool, and its numbers are estimates from what you type. For real decisions about loans, aid, or debt, talk to your school's financial aid office.</p></details>
+  <details class="faq"><summary>Where is my information stored?</summary><p>Only in this browser, on this device. The only thing that leaves your device is the words of each spending entry, sent to Jev for sorting. Clearing your browser's site data or pressing "Clear everything" erases it.</p></details>
+  <details class="faq"><summary>Why does my weekly number change every day?</summary><p>Because there are fewer days left. If you spend less than your weekly number this week, next week's number goes up a little, and the other way around. Update your balance and it catches up with real life.</p></details>
+  <details class="faq"><summary>My rent is due on the 5th, not the 1st.</summary><p>The app counts every monthly bill and monthly income on the 1st, to keep things simple. Over a whole semester it comes out the same. It can make the run-out date a few days off if a big bill lands near the end.</p></details>
+  <details class="faq"><summary>What if my income changes week to week?</summary><p>Use a lower, realistic amount for "every week." Planning on the low side means a good week becomes extra, instead of a slow week becoming a problem.</p></details>
+  <details class="faq"><summary>The runway shows only the dashed line.</summary><p>The solid red line needs logged spending. Add a few days under "What you spent" and it appears.</p></details>
+  <details class="faq"><summary>Can I use it on my phone?</summary><p>Yes. On a phone your results show first; scroll down for the boxes. Add the page to your home screen to open it like an app.</p></details>
+
+  <h2><span class="k">Credits</span>Who made this</h2>
+  <p>Idea and direction by <b>Giovanni Crispo</b> (Finance, Sophomore, WRIT 3810), a Grove Lab: Student Studio project with Marc Watkins, coded with Anthropic's Claude. Category sorting by Jev (TypeSafe AI). Budgeting ideas follow <a href="https://consumer.gov/your-money/making-budget" target="_blank" rel="noopener">consumer.gov's Making a Budget</a> (FTC), the <a href="https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/" target="_blank" rel="noopener">CFPB's Your Money, Your Goals</a>, <a href="https://studentaid.gov/resources/prepare-for-college/checklists/budget" target="_blank" rel="noopener">Federal Student Aid</a>, and the 50/30/20 guideline from Elizabeth Warren and Amelia Warren Tyagi's <i>All Your Worth</i> (2005).</p>
+
+  <div class="cta"><a class="btn" href="../#budget">Open My budget</a><a class="btn ghost" href="../#learn">Go to the lessons</a></div>
+</article>
+</body>
+</html>

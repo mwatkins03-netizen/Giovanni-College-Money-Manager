@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>College Money Manager</title>
+<meta name="description" content="Enter what you have, what comes in, and what goes out, and see whether your money lasts the semester. A Grove Lab student build by Giovanni Crispo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true">$</span><div><b>College Money Manager</b><small>Make it last the semester</small></div></div>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" id="tab-budget" aria-controls="view-budget" aria-selected="true">My budget</button>
+    <button role="tab" id="tab-learn" aria-controls="view-learn" aria-selected="false">Learn</button>
+  </nav>
+  <a class="btn ghost small help" href="how-to-use/">How to use</a>
+</header>
+
+<main>
+<!-- ================= MY BUDGET ================= -->
+<section id="view-budget" role="tabpanel" aria-labelledby="tab-budget">
+  <div class="starter" id="starter">
+    <p><b>New here?</b> Fill in the four boxes on the left, or load a made-up student to see how it works first. Everything you type stays on this device.</p>
+    <div class="row"><button class="btn" id="loadSample">Try a sample student</button><a class="btn ghost" href="how-to-use/">Read how it works</a></div>
+  </div>
+
+  <div class="grid">
+    <!-- inputs -->
+    <div class="inputs">
+      <section class="box" aria-labelledby="h1">
+        <h2 id="h1"><span class="n">1</span>Where you are now</h2>
+        <div class="fields two">
+          <label>Money you have today<span class="money"><input id="balance" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></span><small>Checking plus cash you plan to live on.</small></label>
+          <label>Semester ends<input id="endDate" type="date"><small>Your last day on campus.</small></label>
+        </div>
+      </section>
+
+      <section class="box" aria-labelledby="h2">
+        <h2 id="h2"><span class="n">2</span>Money coming in</h2>
+        <p class="hint">Paychecks, money from family, a refund that hasn't landed yet.</p>
+        <div class="list" id="incomeList"></div>
+        <button class="btn ghost small add" data-add="income">+ Add money coming in</button>
+      </section>
+
+      <section class="box" aria-labelledby="h3">
+        <h2 id="h3"><span class="n">3</span>Money going out</h2>
+        <h3>Bills that repeat</h3>
+        <p class="hint">Rent, phone, car insurance, subscriptions. Monthly bills are counted on the 1st.</p>
+        <div class="list" id="billList"></div>
+        <button class="btn ghost small add" data-add="bill">+ Add a bill</button>
+
+        <h3>What you spent <span class="sub">every day stuff</span></h3>
+        <form class="quick" id="quick" autocomplete="off">
+          <label class="sr" for="quickText">Amount and what it was for</label>
+          <input id="quickText" placeholder="12.50 chipotle with roommates" required>
+          <input id="quickDate" type="date" aria-label="Date spent">
+          <button class="btn">Add</button>
+        </form>
+        <p class="hint">Type the amount and what it was for. Jev sorts it into a category; you can change any category.</p>
+        <div class="spent" id="spentList"></div>
+        <div class="jevbar" id="jevBar"></div>
+      </section>
+
+      <section class="box" aria-labelledby="h4">
+        <h2 id="h4"><span class="n">4</span>Savings goals</h2>
+        <p class="hint">Money you want to still have at the end of the semester: spring break, a cushion, next semester's books.</p>
+        <div class="list" id="goalList"></div>
+        <button class="btn ghost small add" data-add="goal">+ Add a goal</button>
+      </section>
+    </div>
+
+    <!-- results -->
+    <div class="results" aria-live="polite">
+      <section class="box hero" id="hero"></section>
+
+      <section class="box" aria-labelledby="hp">
+        <div class="head"><h2 id="hp">Where your money goes</h2>
+          <div class="seg" role="radiogroup" aria-label="What the chart shows">
+            <button role="radio" data-pie="logged" aria-checked="true">What I logged</button>
+            <button role="radio" data-pie="month" aria-checked="false">A month, bills in</button>
+          </div></div>
+        <div class="pie" id="pie"></div>
+        <details class="tableview"><summary>Show as a table</summary><div id="pieTable"></div></details>
+        <div class="needs" id="needs"></div>
+      </section>
+
+      <section class="box" aria-labelledby="hr">
+        <h2 id="hr">Your runway</h2>
+        <p class="hint">Your balance from today to the end of the semester. If a line drops below zero, that's the day you run out.</p>
+        <div class="runway" id="runway"></div>
+        <div class="legend" id="runwayLegend"></div>
+        <details class="tableview"><summary>Show as a table</summary><div id="runwayTable"></div></details>
+      </section>
+
+      <section class="box tips" id="tips" aria-labelledby="ht"></section>
+
+      <div class="row end"><button class="btn ghost small" id="printBtn">Print my plan</button><button class="btn ghost small" id="resetBtn">Clear everything</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEARN ================= -->
+<section id="view-learn" role="tabpanel" aria-labelledby="tab-learn" hidden>
+  <div class="learn">
+    <aside class="lessons" aria-label="Lessons">
+      <p class="eyebrow">Budgeting in six short lessons</p>
+      <ol id="lessonNav"></ol>
+      <p class="progress" id="learnProgress"></p>
+    </aside>
+    <article class="box lesson" id="lesson" tabindex="-1"></article>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p><b>College Money Manager</b> · Idea and direction by Giovanni Crispo, Finance, Sophomore (WRIT 3810). A Grove Lab: Student Studio prototype with Marc Watkins, coded with Anthropic's Claude. Category sorting by Jev (TypeSafe AI).</p>
+  <p>This is a learning tool, not financial advice. Numbers are estimates from what you type.
+  Sources: <a href="https://consumer.gov/your-money/making-budget" target="_blank" rel="noopener">consumer.gov, Making a Budget (FTC)</a>;
+  <a href="https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/" target="_blank" rel="noopener">CFPB, Your Money, Your Goals</a>;
+  <a href="https://studentaid.gov/resources/prepare-for-college/checklists/budget" target="_blank" rel="noopener">Federal Student Aid, budgeting</a>;
+  the 50/30/20 guideline from Elizabeth Warren and Amelia Warren Tyagi, <i>All Your Worth</i> (2005).</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="tip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="js/money.js"></script>
+<script src="js/jev.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+<script src="js/learn.js"></script>
+</body>
+</html>
